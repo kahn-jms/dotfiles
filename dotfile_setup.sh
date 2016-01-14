@@ -12,12 +12,11 @@ files="
 confdirs="redshift"
 
 ## Locations we are dealing with
-dotdir="$(dirname $0)"
+dotdir="$(readlink -f $(dirname $0))"
 homedir="$HOME"
 confdir="${homedir}/.config"
-backupdir="${homedir}/.dotfile_old
+backupdir="${homedir}/.dotfile_old"
 
-echo "${dotdir} $homedir $confdir"
 
 ## Create symlinks for dotfile, back up old ones in process
 echo "Creating symlinks for dotfile, backing up old ones in ${backupdir}..."
@@ -32,12 +31,12 @@ done
 
 ## Create symlinks for config dirs, back up old ones in process
 echo "Creating symlinks for config directories, backing up old ones in ${backupdir}..."
-for confdir in $confdirs
+for dir in $confdirs
 do
-  echo "Backing up ${confdir}"
-  mv -i "${homedir}/${confdir}" "$backupdir"
-  echo "Creating symlink for ${confdir} \n"
-  ln -s "${dotdir}/${confdir}" "${homedir}/${confdir}"
+  echo "Backing up ${dir}"
+  mv -i "${confdir}/${dir}" "$backupdir"
+  echo "Creating symlink for ${dir} \n"
+  ln -s "${dotdir}/${dir}" "${confdir}/${dir}"
 done
 
 echo "Dotfile setup complete."
