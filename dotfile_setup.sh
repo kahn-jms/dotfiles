@@ -9,7 +9,8 @@ files="
   .gitconfig"
 
 ## Configuration directories list
-confdirs="redshift"
+confdirs="redshift
+  autostart"
 
 ## Locations we are dealing with
 dotdir="$(readlink -f $(dirname $0))"

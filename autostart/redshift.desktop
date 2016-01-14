@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=redshift  -c  .config/redshift/config
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_AU]=Redshift
+Name=Redshift
+Comment[en_AU]=
+Comment=
