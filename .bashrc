@@ -117,3 +117,12 @@ fi
 # Aliases for mounting tablet
 alias android-connect='mtpfs -o allow_other /media/Nexus7'
 alias android-disconnect='fusermount -u /media/Nexus7'
+
+# Set path for go programming language. Using for 'drive' app.
+export GOPATH=$HOME/.gopath
+export PATH=$GOPATH:$GOPATH/bin:$PATH
+
+# Set texmfhome to a cleaner place (if it exists)
+if [ -d ~/.texmf ] ; then
+    export TEXMFHOME=~/.texmf
+fi
