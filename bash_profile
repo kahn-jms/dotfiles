@@ -18,7 +18,8 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 # Load user ssh key if not already loaded (will prompt for password)
-if [ -z "$SSH_AUTH_SOCK" ] ; then
-  eval `ssh-agent -s`
-  ssh-add
-fi
+# Only works for shell login, not gnome, need to figure out why.
+#if [ -z "$SSH_AUTH_SOCK" ] ; then
+#  eval `ssh-agent -s`
+#  ssh-add
+#fi
