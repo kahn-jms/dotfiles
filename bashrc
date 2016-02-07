@@ -123,6 +123,6 @@ export GOPATH=$HOME/.gopath
 export PATH=$GOPATH:$GOPATH/bin:$PATH
 
 # Set texmfhome to a cleaner place (if it exists)
-if [ -d ~/.texmf ] ; then
-    export TEXMFHOME=~/.texmf
-fi
+#if [ -d ~/.texmf ] ; then
+#    export TEXMFHOME=~/.texmf
+#fi

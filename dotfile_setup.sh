@@ -4,12 +4,14 @@
 
 ## Dotfile list
 files="
-  .bashrc
-  .inputrc
-  .gitconfig"
+  bashrc
+  inputrc
+  gitconfig
+  bash_profile"
 
 ## Configuration directories list
-confdirs="redshift
+confdirs="
+  redshift
   autostart"
 
 ## Locations we are dealing with
@@ -25,9 +27,9 @@ mkdir -p $backupdir
 for file in $files
 do
   echo "Backing up ${file}"
-  mv -i "${homedir}/${file}" "$backupdir"
+  mv -i "${homedir}/.${file}" "$backupdir"
   echo "Creating symlink for ${file} \n"
-  ln -s "${dotdir}/${file}" "${homedir}/${file}"
+  ln -s "${dotdir}/${file}" "${homedir}/.${file}"
 done
 
 ## Create symlinks for config dirs, back up old ones in process
