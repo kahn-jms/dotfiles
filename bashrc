@@ -122,6 +122,10 @@ alias android-disconnect='fusermount -u /media/Nexus7'
 export GOPATH=$HOME/.gopath
 export PATH=$GOPATH:$GOPATH/bin:$PATH
 
+## Texlive settings
+# Add Texlive in dir to path
+export PATH=$HOME/.local/texlive/2015/bin/x86_64-linux:$PATH
+
 # Set texmfhome to a cleaner place (if it exists)
 #if [ -d ~/.texmf ] ; then
 #    export TEXMFHOME=~/.texmf
