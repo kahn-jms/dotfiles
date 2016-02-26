@@ -10,12 +10,20 @@ esac
 # If not running interactively, don't do anything (alternative method)
 #[ -z "$PS1" ] && return
 
+
+## History control, taken from:
+## http://unix.stackexchange.com/questions/18212/bash-history-ignoredups-and-erasedups-setting-conflict-with-common-history
 # don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignoredups
-# ... and ignore same sucessive entries.
-export HISTCONTROL=ignoreboth
+export HISTCONTROL=ignoredups:erasedups
 # append to the history file, don't overwrite it
 shopt -s histappend
+# Sync history between terminals
+PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+# Set the history size
+HISTSIZE=1000
+# And set the history file size
+HISTFILESIZE=10000
+
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
