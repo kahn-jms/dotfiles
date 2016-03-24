@@ -11,8 +11,7 @@ files="
 
 ## Configuration directories list
 confdirs="
-  redshift
-  autostart"
+  redshift"
 
 ## Locations we are dealing with
 dotdir="$(readlink -f $(dirname $0))"
