@@ -138,3 +138,8 @@ export PATH=$HOME/.local/texlive/2015/bin/x86_64-linux:$PATH
 #if [ -d ~/.texmf ] ; then
 #    export TEXMFHOME=~/.texmf
 #fi
+
+## Add user local bin to path for userspace installed programs
+if [ -d ~/.local/bin ] ; then
+  export PATH=$HOME/.local/bin:$PATH
+fi
