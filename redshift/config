@@ -2,7 +2,7 @@
 [redshift]
 ; Set the day and night screen temperatures
 temp-day=5900
-temp-night=3500
+temp-night=4000
 
 ; Enable/Disable a smooth transition between day and night
 ; 0 will cause a direct change from day to night screen temperature.
@@ -27,8 +27,8 @@ gamma=0.8
 ; Set the location-provider: 'geoclue', 'geoclue2', 'manual'
 ; type 'redshift -l list' to see possible values.
 ; The location provider settings are in a different section.
-;location-provider=manual
-location-provider=geoclue2
+location-provider=manual
+;location-provider=geoclue2
 
 ; Set the adjustment-method: 'randr', 'vidmode'
 ; type 'redshift -m list' to see all possible values.
@@ -42,9 +42,9 @@ adjustment-method=randr
 ; ex: 'redshift -l manual:help'
 ; Keep in mind that longitudes west of Greenwich (e.g. the Americas)
 ; are negative numbers.
-;[manual]
-;lat=48.249561
-;lon=11.651664
+[manual]
+lat=48.249561
+lon=11.651664
 
 ; Configuration of the adjustment-method
 ; type 'redshift -m METHOD:help' to see the settings.
