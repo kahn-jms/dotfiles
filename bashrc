@@ -14,6 +14,8 @@ esac
 export HISTCONTROL=ignoredups
 # ... and ignore same sucessive entries.
 export HISTCONTROL=ignoreboth
+# Set size of command history
+export HISTSIZE=5000
 # append to the history file, don't overwrite it
 shopt -s histappend
 
@@ -115,18 +117,23 @@ if ! shopt -oq posix; then
 fi
 
 # Aliases for mounting tablet
-alias android-connect='mtpfs -o allow_other /media/Nexus7'
-alias android-disconnect='fusermount -u /media/Nexus7'
+#alias android-connect='mtpfs -o allow_other /media/Nexus7'
+#alias android-disconnect='fusermount -u /media/Nexus7'
 
 # Set path for go programming language. Using for 'drive' app.
-export GOPATH=$HOME/.gopath
-export PATH=$GOPATH:$GOPATH/bin:$PATH
+#export GOPATH=$HOME/.gopath
+#export PATH=$GOPATH:$GOPATH/bin:$PATH
 
 ## Texlive settings
 # Add Texlive in dir to path
-export PATH=$HOME/.local/texlive/2015/bin/x86_64-linux:$PATH
+export PATH=$HOME/.local/texlive/2017/bin/x86_64-linux:$PATH
 
 # Set texmfhome to a cleaner place (if it exists)
-#if [ -d ~/.texmf ] ; then
-#    export TEXMFHOME=~/.texmf
-#fi
+if [ -d ~/.local/texmf ] ; then
+    export TEXMFHOME=~/.local/texmf
+fi
+
+## Locally installed programs
+export PATH=$HOME/.local/bin:$PATH
+
+export WORK=/srv/data/jkahn/output
