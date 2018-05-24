@@ -18,7 +18,8 @@ export HISTCONTROL=ignoredups:erasedups
 # append to the history file, don't overwrite it
 shopt -s histappend
 # Sync history between terminals
-PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+#PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 # Set the history size
 export HISTSIZE=1000
 # And set the history file size
@@ -109,7 +110,7 @@ alias mv='mv -i'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+#alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -129,14 +130,14 @@ alias android-connect='mtpfs -o allow_other /media/Nexus7'
 alias android-disconnect='fusermount -u /media/Nexus7'
 
 # Set path for go programming language. Using for 'drive' app.
-export GOPATH=$HOME/.gopath
-if [ -d $GOPATH ] ; then
-  export PATH=$GOPATH:$GOPATH/bin:$PATH
-fi
+#export GOPATH=$HOME/.gopath
+#if [ -d $GOPATH ] ; then
+#  export PATH=$GOPATH:$GOPATH/bin:$PATH
+#fi
 
 ## Texlive settings
 # Add Texlive in dir to path
-export PATH=$HOME/.local/texlive/2015/bin/x86_64-linux:$PATH
+export PATH=$HOME/.local/texlive/2016/bin/x86_64-linux:$PATH
 
 # Set texmfhome to a cleaner place (if it exists)
 #if [ -d ~/.texmf ] ; then
@@ -147,3 +148,6 @@ export PATH=$HOME/.local/texlive/2015/bin/x86_64-linux:$PATH
 if [ -d ~/.local/bin ] ; then
   export PATH=$HOME/.local/bin:$PATH
 fi
+
+## A locally installed python libs, need this for mypy in vim
+export MYPYPATH=$(python3 -c "import sys; print(':'.join([i for i in sys.path if 'home' in i]))")
