@@ -10,14 +10,21 @@ esac
 # If not running interactively, don't do anything (alternative method)
 #[ -z "$PS1" ] && return
 
+
+## History control, taken from:
+## http://unix.stackexchange.com/questions/18212/bash-history-ignoredups-and-erasedups-setting-conflict-with-common-history
 # don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignoredups
-# ... and ignore same sucessive entries.
-export HISTCONTROL=ignoreboth
-# Set size of command history
-export HISTSIZE=5000
+export HISTCONTROL=ignoredups:erasedups:ignoreboth
 # append to the history file, don't overwrite it
 shopt -s histappend
+# Sync history between terminals
+#PROMPT_COMMAND="history -n; history -w; history -c; history -r; $PROMPT_COMMAND"
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+# Set the history size
+export HISTSIZE=5000
+# And set the history file size
+export HISTFILESIZE=10000
+
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -33,7 +40,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
+  xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -42,30 +49,30 @@ esac
 force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
+  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
+  else
+    color_prompt=
+  fi
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[00;32m\]\u@\h\[\033[00m\]\[\033[01;34m\]:\[\033[01;34m\]\W\[\033[00m\]\[\033[00;35m\]\$\[\033[00m\] '
+  PS1='${debian_chroot:+($debian_chroot)}\[\033[00;32m\]\u@\h\[\033[00m\]\[\033[01;34m\]:\[\033[01;34m\]\W\[\033[00m\]\[\033[00;35m\]\$\[\033[00m\] '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
+  xterm*|rxvt*)
     #PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
     ;;
-*)
+  *)
     ;;
 esac
 
@@ -75,20 +82,20 @@ esac
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
 # enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ] && [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    #eval "`dircolors -b`"
-    alias ls='ls --color=auto'
-    #alias dir='ls --color=auto --format=vertical'
-    #alias vdir='ls --color=auto --format=long'
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  #eval "`dircolors -b`"
+  alias ls='ls --color=auto'
+  #alias dir='ls --color=auto --format=vertical'
+  #alias vdir='ls --color=auto --format=long'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
 fi
 
 # some more ls aliases
@@ -103,7 +110,7 @@ alias mv='mv -i'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+#alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -116,13 +123,18 @@ if ! shopt -oq posix; then
   fi
 fi
 
+#### Misc Customisations ####
+
 # Aliases for mounting tablet
 #alias android-connect='mtpfs -o allow_other /media/Nexus7'
 #alias android-disconnect='fusermount -u /media/Nexus7'
 
 # Set path for go programming language. Using for 'drive' app.
 #export GOPATH=$HOME/.gopath
-#export PATH=$GOPATH:$GOPATH/bin:$PATH
+#if [ -d $GOPATH ] ; then
+#  export PATH=$GOPATH:$GOPATH/bin:$PATH
+#fi
+
 
 ## Texlive settings
 # Add Texlive in dir to path
@@ -133,7 +145,15 @@ if [ -d ~/.local/texmf ] ; then
     export TEXMFHOME=~/.local/texmf
 fi
 
-## Locally installed programs
-export PATH=$HOME/.local/bin:$PATH
+## Add user local bin to path for userspace installed programs
+if [ -d ~/.local/bin ] ; then
+  export PATH=$HOME/.local/bin:$PATH
+fi
 
-export WORK=/srv/data/jkahn/output
+# Kuhrios
+if [ -d /srv/data/jkahn/output ] ; then
+		export WORK=/srv/data/jkahn/output
+fi
+
+## A locally installed python libs, need this for mypy in vim
+export MYPYPATH=$(python3 -c "import sys; print(':'.join([i for i in sys.path if 'home' in i]))")
