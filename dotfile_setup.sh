@@ -10,13 +10,13 @@ files="
   bash_profile"
 
 ## Configuration directories list
-confdirs="
-  redshift"
+# confdirs="
+#   redshift"
 
 ## Locations we are dealing with
 dotdir="$(readlink -f $(dirname $0))"
 homedir="$HOME"
-confdir="${homedir}/.config"
+#confdir="${homedir}/.config"
 backupdir="${homedir}/.dotfile_old"
 
 
@@ -32,13 +32,13 @@ do
 done
 
 ## Create symlinks for config dirs, back up old ones in process
-echo "Creating symlinks for config directories, backing up old ones in ${backupdir}..."
-for dir in $confdirs
-do
-  echo "Backing up ${dir}"
-  mv -i "${confdir}/${dir}" "$backupdir"
-  echo "Creating symlink for ${dir} \n"
-  ln -s "${dotdir}/${dir}" "${confdir}/${dir}"
-done
+# echo "Creating symlinks for config directories, backing up old ones in ${backupdir}..."
+# for dir in $confdirs
+# do
+#   echo "Backing up ${dir}"
+#   mv -i "${confdir}/${dir}" "$backupdir"
+#   echo "Creating symlink for ${dir} \n"
+#   ln -s "${dotdir}/${dir}" "${confdir}/${dir}"
+# done
 
 echo "Dotfile setup complete."

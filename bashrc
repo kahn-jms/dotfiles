@@ -130,15 +130,18 @@ fi
 #alias android-disconnect='fusermount -u /media/Nexus7'
 
 # Set path for go programming language. Using for 'drive' app.
-#export GOPATH=$HOME/.gopath
-#if [ -d $GOPATH ] ; then
-#  export PATH=$GOPATH:$GOPATH/bin:$PATH
-#fi
+export GOPATH=$HOME/go
+if [ -d $GOPATH ] ; then
+	export PATH=$GOPATH:$GOPATH/bin:$PATH
+fi
 
+# Set vim as default shell editor
+export VISUAL=vim
+export EDITOR="$VISUAL"
 
 ## Texlive settings
 # Add Texlive in dir to path
-export PATH=$HOME/.local/texlive/2017/bin/x86_64-linux:$PATH
+export PATH=$HOME/.local/texlive/2019/bin/x86_64-linux:$PATH
 
 # Set texmfhome to a cleaner place (if it exists)
 if [ -d ~/.local/texmf ] ; then
@@ -157,3 +160,19 @@ fi
 
 ## A locally installed python libs, need this for mypy in vim
 export MYPYPATH=$(python3 -c "import sys; print(':'.join([i for i in sys.path if 'home' in i]))")
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/jkahn/.local/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/jkahn/.local/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/jkahn/.local/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/jkahn/.local/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
