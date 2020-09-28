@@ -9,10 +9,6 @@ files="
   gitconfig
   bash_profile"
 
-## Configuration directories list
-# confdirs="
-#   redshift"
-
 ## Locations we are dealing with
 dotdir="$(readlink -f $(dirname $0))"
 homedir="$HOME"
