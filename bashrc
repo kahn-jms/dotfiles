@@ -112,16 +112,6 @@ alias mv='mv -i'
 #   sleep 10; alert
 #alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
 
 #### Misc Customisations ####
 
@@ -141,7 +131,9 @@ export EDITOR="$VISUAL"
 
 ## Texlive settings
 # Add Texlive in dir to path
-export PATH=$HOME/.local/texlive/2019/bin/x86_64-linux:$PATH
+export PATH=$HOME/.local/texlive/2020/bin/x86_64-linux:$PATH
+# And the man pages
+export MANPATH=$HOME/.local/texlive/2020/texmf-dist/doc/man:$MANPATH
 
 # Set texmfhome to a cleaner place (if it exists)
 if [ -d ~/.local/texmf ] ; then
@@ -176,3 +168,13 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . "/usr/share/bash-completion/bash_completion"
+  elif [ -f /etc/bash_completion ]; then
+    . "/etc/bash_completion"
+  fi
+fi
