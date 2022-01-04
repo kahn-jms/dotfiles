@@ -153,6 +153,9 @@ fi
 ## A locally installed python libs, need this for mypy in vim
 export MYPYPATH=$(python3 -c "import sys; print(':'.join([i for i in sys.path if 'home' in i]))")
 
+## Tell tmux to make sessions in home directory so they're persistent across hosts with shared filesystems
+export TMUX_TMPDIR=${HOME}/.tmux
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/jkahn/.local/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
