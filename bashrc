@@ -10,6 +10,8 @@ esac
 # If not running interactively, don't do anything (alternative method)
 #[ -z "$PS1" ] && return
 
+# Don't escape $ in evnironment variables when tab completing
+shopt -s direxpand
 
 ## History control, taken from:
 ## http://unix.stackexchange.com/questions/18212/bash-history-ignoredups-and-erasedups-setting-conflict-with-common-history
@@ -128,12 +130,24 @@ fi
 # Set vim as default shell editor
 export VISUAL=vim
 export EDITOR="$VISUAL"
+# And to open with a server
+alias vim='vim --servername vim'
 
 ## Texlive settings
 # Add Texlive in dir to path
-export PATH=$HOME/.local/texlive/2020/bin/x86_64-linux:$PATH
+## 2019
+#export PATH=$HOME/.local/texlive/2019/bin/x86_64-linux:$PATH
+## And the man pages
+#export MANPATH=$HOME/.local/texlive/2019/texmf-dist/doc/man:$MANPATH
+# 2020
+#export PATH=$HOME/.local/texlive/2020/bin/x86_64-linux:$PATH
+## And the man pages
+#export MANPATH=$HOME/.local/texlive/2020/texmf-dist/doc/man:$MANPATH
+# 2021
+# Add Texlive in dir to path
+export PATH=$HOME/.local/texlive/2021/bin/x86_64-linux:$PATH
 # And the man pages
-export MANPATH=$HOME/.local/texlive/2020/texmf-dist/doc/man:$MANPATH
+export MANPATH=$HOME/.local/texlive/2021/texmf-dist/doc/man:$MANPATH
 
 # Set texmfhome to a cleaner place (if it exists)
 if [ -d ~/.local/texmf ] ; then
@@ -155,15 +169,15 @@ export MYPYPATH=$(python3 -c "import sys; print(':'.join([i for i in sys.path if
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/jkahn/.local/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/jkahn/.local/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+		eval "$__conda_setup"
 else
-    if [ -f "/home/jkahn/.local/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/jkahn/.local/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/jkahn/.local/miniconda3/bin:$PATH"
-    fi
+		if [ -f "/home/jkahn/.local/anaconda3/etc/profile.d/conda.sh" ]; then
+				. "/home/jkahn/.local/anaconda3/etc/profile.d/conda.sh"
+		else
+				export PATH="/home/jkahn/.local/anaconda3/bin:$PATH"
+		fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
@@ -178,3 +192,7 @@ if ! shopt -oq posix; then
     . "/etc/bash_completion"
   fi
 fi
+
+# Install Ruby Gems to ~/.gems
+export GEM_HOME="$HOME/.gems"
+export PATH="$HOME/.gems/bin:$PATH"

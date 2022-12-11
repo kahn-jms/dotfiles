@@ -1,6 +1,6 @@
 [user]
-	email = james.kahn@kit.edu
-	name = jkahn
+	email = kahn.jms@gmail.com
+	name = James Kahn
 [core]
 	editor = vim
 [push]
@@ -18,3 +18,5 @@
 	cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 [mergetool]
 	prompt = false
+[init]
+	defaultBranch = main
