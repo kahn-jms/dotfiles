@@ -10,6 +10,8 @@ esac
 # If not running interactively, don't do anything (alternative method)
 #[ -z "$PS1" ] && return
 
+# Don't escape $ in evnironment variables when tab completing
+shopt -s direxpand
 
 ## History control, taken from:
 ## http://unix.stackexchange.com/questions/18212/bash-history-ignoredups-and-erasedups-setting-conflict-with-common-history
