@@ -14,7 +14,8 @@ files="
 dotdir="$(readlink -f $(dirname $0))"
 homedir="$HOME"
 #confdir="${homedir}/.config"
-backupdir="${homedir}/.dotfile_old"
+timestamp="$(date +%Y.%m.%d_%T)"
+backupdir="${homedir}/.dotfile_old/${timestamp}"
 
 
 ## Create symlinks for dotfile, back up old ones in process
@@ -23,7 +24,7 @@ mkdir -p $backupdir
 for file in $files
 do
   echo "Backing up ${file}"
-  mv -i "${homedir}/.${file}" "$backupdir/${file}.$(date +%Y.%m.%d_%T)"
+  mv -i "${homedir}/.${file}" "${backupdir}/${file}"
   echo "Creating symlink for ${file} \n"
   ln -s "${dotdir}/${file}" "${homedir}/.${file}"
 done
