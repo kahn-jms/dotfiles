@@ -5,6 +5,7 @@
 ## Dotfile list
 files="
   bashrc
+  zshrc
   inputrc
   gitconfig
   bash_profile"
@@ -22,7 +23,7 @@ mkdir -p $backupdir
 for file in $files
 do
   echo "Backing up ${file}"
-  mv -i "${homedir}/.${file}" "$backupdir"
+  mv -i "${homedir}/.${file}" "$backupdir/${file}.$(date +%Y.%m.%d_%T)"
   echo "Creating symlink for ${file} \n"
   ln -s "${dotdir}/${file}" "${homedir}/.${file}"
 done

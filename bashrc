@@ -145,9 +145,9 @@ alias vim='vim --servername vim'
 #export MANPATH=$HOME/.local/texlive/2020/texmf-dist/doc/man:$MANPATH
 # 2021
 # Add Texlive in dir to path
-export PATH=$HOME/.local/texlive/2021/bin/x86_64-linux:$PATH
+export PATH=$HOME/.local/texlive/2022/bin/x86_64-linux:$PATH
 # And the man pages
-export MANPATH=$HOME/.local/texlive/2021/texmf-dist/doc/man:$MANPATH
+export MANPATH=$HOME/.local/texlive/2022/texmf-dist/doc/man:$MANPATH
 
 # Set texmfhome to a cleaner place (if it exists)
 if [ -d ~/.local/texmf ] ; then
