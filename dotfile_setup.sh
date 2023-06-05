@@ -6,6 +6,7 @@
 files="
   bashrc
   zshrc
+  p10k.zsh
   inputrc
   gitconfig
   bash_profile"
