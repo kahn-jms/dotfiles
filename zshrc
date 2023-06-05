@@ -7,6 +7,7 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 # Add Texlive in dir to path
 export PATH=$HOME/.local/texlive/2022/bin/x86_64-linux:$PATH
 # And the man pages
@@ -86,7 +87,7 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git command-not-found)
 
 source $ZSH/oh-my-zsh.sh
 
