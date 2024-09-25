@@ -4,263 +4,301 @@ IdentityFile ~/.ssh/id_rsa.JamesK
 IdentityFile ~/.ssh/id_rsa.Hummus.orig
 
 ### HAL
+Host 222exhibition
+		HostName 222exhibitionstreet-hal-ssh.dbavic.com
+		ProxyCommand cloudflared access ssh --hostname %h
+		PreferredAuthentications password
+		IdentitiesOnly no
+		PubkeyAuthentication no
+
+Host gg-edge
+		HostName localhost
+		Port 5555
+		User edge
+		ServerAliveCountMax 10
+		ServerAliveInterval 60
+		PreferredAuthentications password
+		IdentitiesOnly no
+		PubkeyAuthentication no
+		#ControlMaster auto
+		#ControlPath ~/.ssh/sockets/%r@%h:%p
+		#ControlPersist yes
+
+Host edge
+		HostName 10.10.0.248
+		User edge
+		ForwardAgent yes
+		ServerAliveCountMax 5
+		ServerAliveInterval 60
+		PreferredAuthentications password
+		IdentitiesOnly no
+
+Host hal_opennem_ec2
+		HostName api.opennem.halsystems.io
+		User ec2-user
+		ForwardAgent yes
+		ServerAliveCountMax 5
+		ServerAliveInterval 60
+		IdentityFile ~/.ssh/dev-hal-ec2.pem
+		IdentitiesOnly yes
+
 Host simVM_2
-	HostName 127.0.0.1
-	Port 2223
-	User jason
-	PreferredAuthentications password
-  ForwardAgent yes
-  ServerAliveCountMax 5
-  ServerAliveInterval 60
+		HostName 127.0.0.1
+		Port 2223
+		User jason
+		PreferredAuthentications password
+		ForwardAgent yes
+		ServerAliveCountMax 5
+		ServerAliveInterval 60
 
 Host simVM
-	HostName 127.0.0.1
-	Port 2222
-	User jason
-	PreferredAuthentications password
-  ForwardAgent yes
-  ServerAliveCountMax 5
-  ServerAliveInterval 60
+		HostName 127.0.0.1
+		Port 2222
+		User jason
+		PreferredAuthentications password
+		ForwardAgent yes
+		ServerAliveCountMax 5
+		ServerAliveInterval 60
 
 Host obelisk
-	HostName 10.10.0.220
-	User obuser
-  ForwardAgent yes
-  ServerAliveCountMax 5
-  ServerAliveInterval 60
-  IdentityFile ~/.ssh/id_ed25519
+		HostName 10.10.0.220
+		User obuser
+		ForwardAgent yes
+		ServerAliveCountMax 5
+		ServerAliveInterval 60
+		IdentityFile ~/.ssh/id_ed25519
 
 
-### AWS EC2
+		### AWS EC2
 Host ec2-ubuntu
-	HostName ec2-13-211-78-83.ap-southeast-2.compute.amazonaws.com
-	User ubuntu
-  IdentityFile ~/.ssh/id_ed25519
-  IdentitiesOnly yes
-  ForwardAgent yes
-  ServerAliveCountMax 5
-  ServerAliveInterval 60
+		HostName ec2-13-211-78-83.ap-southeast-2.compute.amazonaws.com
+		User ubuntu
+		IdentityFile ~/.ssh/id_ed25519
+		IdentitiesOnly yes
+		ForwardAgent yes
+		ServerAliveCountMax 5
+		ServerAliveInterval 60
 
-### RunPod
+		### RunPod
 Host runpod
-	HostName 213.173.98.200
-	User root
-  #HostName ssh.runpod.io
-	#User zof4ggpasuxeqa-64410c42
-	Port 17681
-  IdentityFile ~/.ssh/id_ed25519.runpod
-  IdentitiesOnly yes
-  ForwardAgent yes
-  ServerAliveCountMax 5
-  ServerAliveInterval 60
+		HostName 213.173.98.200
+		User root
+		#HostName ssh.runpod.io
+		#User zof4ggpasuxeqa-64410c42
+		Port 17681
+		IdentityFile ~/.ssh/id_ed25519.runpod
+		IdentitiesOnly yes
+		ForwardAgent yes
+		ServerAliveCountMax 5
+		ServerAliveInterval 60
 
-### Home
+		### Home
 Host remarkable
-	HostName 10.11.99.1
-	User root
-  # Don't let it try every ssh key (otherwise it fails)
-	IdentityFile ~/.ssh/id_rsa
-  IdentitiesOnly yes
+		HostName 10.11.99.1
+		User root
+		# Don't let it try every ssh key (otherwise it fails)
+		IdentityFile ~/.ssh/id_rsa
+		IdentitiesOnly yes
 
 Host pi
-	HostName 192.168.178.2
-	User pi
-  # Don't let it try every ssh key (otherwise it fails)
-	IdentityFile ~/.ssh/id_ed25519
-  IdentitiesOnly yes
+		HostName 192.168.178.2
+		User pi
+		# Don't let it try every ssh key (otherwise it fails)
+		IdentityFile ~/.ssh/id_ed25519
+		IdentitiesOnly yes
 
 Host hummus-lite
-  HostName hummus-lite.fritz.box
-  #HostName 192.168.178.3
-  User jkahn
-  ServerAliveCountMax 5
-  ServerAliveInterval 60
-  ForwardAgent yes
-  ForwardX11 yes
-  ForwardX11Trusted yes
+		HostName hummus-lite.fritz.box
+		#HostName 192.168.178.3
+		User jkahn
+		ServerAliveCountMax 5
+		ServerAliveInterval 60
+		ForwardAgent yes
+		ForwardX11 yes
+		ForwardX11Trusted yes
 
-### HAICU
+		### HAICU
 Host haicore
-  HostName haicore.scc.kit.edu
-  # Jupyter notebooks
-  LocalForward 9888 127.0.0.1:9888
-  # Tensorboard
-  LocalForward 6969 127.0.0.1:6969
+		HostName haicore.scc.kit.edu
+		# Jupyter notebooks
+		LocalForward 9888 127.0.0.1:9888
+		# Tensorboard
+		LocalForward 6969 127.0.0.1:6969
 
 Host horeka
-  HostName horeka.scc.kit.edu
-  # Jupyter notebooks
-  LocalForward 8999 127.0.0.1:8999
-  # Tensorboard
-  LocalForward 9696 127.0.0.1:9696
+		HostName horeka.scc.kit.edu
+		# Jupyter notebooks
+		LocalForward 8999 127.0.0.1:8999
+		# Tensorboard
+		LocalForward 9696 127.0.0.1:9696
 
 Host hkn1991
-  HostName hk-login3.scc.kit.edu
-  # Jupyter notebooks
-  LocalForward 8991 127.0.0.1:8991
-  # Tensorboard
-  LocalForward 6961 127.0.0.1:6961
+		HostName hk-login3.scc.kit.edu
+		# Jupyter notebooks
+		LocalForward 8991 127.0.0.1:8991
+		# Tensorboard
+		LocalForward 6961 127.0.0.1:6961
 
 Host ftp64
-  HostName ftp-a64-head.scc.kit.edu
-  # Jupyter notebooks
-  LocalForward 8994 127.0.0.1:8994
-  # Tensorboard
-  LocalForward 6964 127.0.0.1:6964
+		HostName ftp-a64-head.scc.kit.edu
+		# Jupyter notebooks
+		LocalForward 8994 127.0.0.1:8994
+		# Tensorboard
+		LocalForward 6964 127.0.0.1:6964
 
 Host ftp86
-  HostName ftp-x86-login.scc.kit.edu
-  # Jupyter notebooks
-  LocalForward 8996 127.0.0.1:8996
-  # Tensorboard
-  LocalForward 6866 127.0.0.1:6866
+		HostName ftp-x86-login.scc.kit.edu
+		# Jupyter notebooks
+		LocalForward 8996 127.0.0.1:8996
+		# Tensorboard
+		LocalForward 6866 127.0.0.1:6866
 
-# Generic configs for all HoreKa hosts
+		# Generic configs for all HoreKa hosts
 Host horeka haicore hkn1991 hkn1992 ftp64 ftp86
-  User cd4062
-  ServerAliveCountMax 5
-  ServerAliveInterval 60
-	ForwardAgent yes
-	ForwardX11 yes
-	ForwardX11Trusted yes
-  # Don't let it try every ssh key (otherwise it fails)
-  IdentityFile ~/.ssh/id_ed25519.horeka_5
-  IdentitiesOnly yes
+		User cd4062
+		ServerAliveCountMax 5
+		ServerAliveInterval 60
+		ForwardAgent yes
+		ForwardX11 yes
+		ForwardX11Trusted yes
+		# Don't let it try every ssh key (otherwise it fails)
+		IdentityFile ~/.ssh/id_ed25519.horeka_5
+		IdentitiesOnly yes
 
 
 Host forhlr2
-  HostName forhlr2.scc.kit.edu
-  User cd4062
-  ServerAliveCountMax 5
-  ServerAliveInterval 60
-  ForwardAgent yes
-  ForwardX11 yes
-  ForwardX11Trusted yes
-  # Jupyter notebooks
-  LocalForward 8911 127.0.0.1:8911
-  # Tensorboard
-  LocalForward 6661 127.0.0.1:6661
+		HostName forhlr2.scc.kit.edu
+		User cd4062
+		ServerAliveCountMax 5
+		ServerAliveInterval 60
+		ForwardAgent yes
+		ForwardX11 yes
+		ForwardX11Trusted yes
+		# Jupyter notebooks
+		LocalForward 8911 127.0.0.1:8911
+		# Tensorboard
+		LocalForward 6661 127.0.0.1:6661
 
 
-### KIT related
-# For tunneling through carlo:
-# sshuttle -r cd4062@carlo.gridka.de:24 10.97.13.127
+		### KIT related
+		# For tunneling through carlo:
+		# sshuttle -r cd4062@carlo.gridka.de:24 10.97.13.127
 Host carlo
-	# Should add backups too
-  HostName carlo.gridka.de
-  User cd4062
-	Port 24
-	#ForwardAgent yes
-  #ForwardX11 yes
-  #ForwardX11Trusted yes
+		# Should add backups too
+		HostName carlo.gridka.de
+		User cd4062
+		Port 24
+		#ForwardAgent yes
+		#ForwardX11 yes
+		#ForwardX11Trusted yes
 
 Host ekplx15
-	HostName ekplx15.ekp.kit.edu
-	User jkahn
-	ForwardAgent yes
+		HostName ekplx15.ekp.kit.edu
+		User jkahn
+		ForwardAgent yes
 
 Host deepthought
-	HostName 129.13.101.137
-	User jkahn
-	# Jupyter notebooks
-	LocalForward 8910 127.0.0.1:8910
-	# Tensorboard
-	LocalForward 6660 127.0.0.1:6660
-  ServerAliveCountMax 5
-  ServerAliveInterval 60
-	ForwardAgent yes
-  #ForwardX11 yes
-  #ForwardX11Trusted yes
+		HostName 129.13.101.137
+		User jkahn
+		# Jupyter notebooks
+		LocalForward 8910 127.0.0.1:8910
+		# Tensorboard
+		LocalForward 6660 127.0.0.1:6660
+		ServerAliveCountMax 5
+		ServerAliveInterval 60
+		ForwardAgent yes
+		#ForwardX11 yes
+		#ForwardX11Trusted yes
 
 Host bms1
-	HostName bms1.etp.kit.edu
-	User jkahn
-	# Jupyter notebooks
-	LocalForward 8911 127.0.0.1:8911
-	# Tensorboard
-	LocalForward 6661 127.0.0.1:6661
-  ServerAliveCountMax 5
-  ServerAliveInterval 60
-	ForwardAgent yes
-  ForwardX11 yes
-  ForwardX11Trusted yes
+		HostName bms1.etp.kit.edu
+		User jkahn
+		# Jupyter notebooks
+		LocalForward 8911 127.0.0.1:8911
+		# Tensorboard
+		LocalForward 6661 127.0.0.1:6661
+		ServerAliveCountMax 5
+		ServerAliveInterval 60
+		ForwardAgent yes
+		ForwardX11 yes
+		ForwardX11Trusted yes
 
 Host etphome
-	HostName home.etp.kit.edu
-	User jkahn
+		HostName home.etp.kit.edu
+		User jkahn
 
-### Munich related
+		### Munich related
 Host kuhrios
-  HostName  kuhrios.universe-cluster.de
-  User jkahn
-  ForwardX11 yes
-  ForwardX11Trusted yes
-  ForwardAgent yes
+		HostName  kuhrios.universe-cluster.de
+		User jkahn
+		ForwardX11 yes
+		ForwardX11Trusted yes
+		ForwardAgent yes
 
 Host kuhrywurst
-  HostName 10.155.59.7
-  User jkahn
-  ForwardX11 yes
-  ForwardX11Trusted yes
+		HostName 10.155.59.7
+		User jkahn
+		ForwardX11 yes
+		ForwardX11Trusted yes
 
 Host kuhrywurst_rem
-	HostName 10.155.59.7
-	User jkahn
-	LocalForward 8900 localhost:8900
-  ServerAliveCountMax 5
-  ServerAliveInterval 60
-	ForwardAgent yes
-  #ForwardX11 yes
-  #ForwardX11Trusted yes
-	ProxyCommand  ssh jkahn@kuhrios.universe-cluster.de nc %h %p 2> /dev/null
+		HostName 10.155.59.7
+		User jkahn
+		LocalForward 8900 localhost:8900
+		ServerAliveCountMax 5
+		ServerAliveInterval 60
+		ForwardAgent yes
+		#ForwardX11 yes
+		#ForwardX11Trusted yes
+		ProxyCommand  ssh jkahn@kuhrios.universe-cluster.de nc %h %p 2> /dev/null
 
 
 Host c2pap
-  HostName c2paplogin.lrz.de
-  User ru24vix2
-  ServerAliveCountMax 5
-  ServerAliveInterval 60
+		HostName c2paplogin.lrz.de
+		User ru24vix2
+		ServerAliveCountMax 5
+		ServerAliveInterval 60
 
 Host c2pap_data2
-  HostName c2papdata2.lrz.de
-  User ru24vix2
-  ServerAliveCountMax 5
-  ServerAliveInterval 60
+		HostName c2papdata2.lrz.de
+		User ru24vix2
+		ServerAliveCountMax 5
+		ServerAliveInterval 60
 
 Host pcrummel
-  HostName 10.155.59.81
-  User "james"
+		HostName 10.155.59.81
+		User "james"
 
-# For KEK access
+		# For KEK access
 Host kekcc
-  User      kahn
-  Hostname  login.cc.kek.jp
-  ProxyCommand  ssh kahn@sshcc1.kek.jp nc %h %p 2> /dev/null
-  ServerAliveCountMax 5
-  ServerAliveInterval 60
-	ForwardAgent yes
+		User      kahn
+		Hostname  login.cc.kek.jp
+		ProxyCommand  ssh kahn@sshcc1.kek.jp nc %h %p 2> /dev/null
+		ServerAliveCountMax 5
+		ServerAliveInterval 60
+		ForwardAgent yes
 
 Host kekcx
-  User      kahn
-  Hostname  ccx.cc.kek.jp
-  #ProxyCommand  ssh kahn@sshcc1.kek.jp nc %h %p 2> /dev/null
-  ServerAliveCountMax 5
-  ServerAliveInterval 60
+		User      kahn
+		Hostname  ccx.cc.kek.jp
+		#ProxyCommand  ssh kahn@sshcc1.kek.jp nc %h %p 2> /dev/null
+		ServerAliveCountMax 5
+		ServerAliveInterval 60
 
-# For NAF (DESY) access
+		# For NAF (DESY) access
 Host naf
-  User      jkahn
-  Hostname  naf-belle2.desy.de
-  ServerAliveCountMax 5
-  ServerAliveInterval 60
-	ForwardAgent yes
+		User      jkahn
+		Hostname  naf-belle2.desy.de
+		ServerAliveCountMax 5
+		ServerAliveInterval 60
+		ForwardAgent yes
 
-# Setup specifically for hosting Jupyter notebooks
+		# Setup specifically for hosting Jupyter notebooks
 Host naf12
-  User      jkahn
-	Hostname naf-belle12.desy.de
-	LocalForward 8889 localhost:8889
-  ServerAliveCountMax 5
-  ServerAliveInterval 60
-	ForwardAgent yes
+		User      jkahn
+		Hostname naf-belle12.desy.de
+		LocalForward 8889 localhost:8889
+		ServerAliveCountMax 5
+		ServerAliveInterval 60
+		ForwardAgent yes
 
