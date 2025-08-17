@@ -12,6 +12,8 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.local/texlive/2022/bin/x86_64-linux:$PATH
 # And the man pages
 export MANPATH=$HOME/.local/texlive/2022/texmf-dist/doc/man:$MANPATH
+# And Go
+export PATH=$HOME/go/bin:$PATH
 
 # Set texmfhome to a cleaner place (if it exists)
 if [ -d ~/.local/texmf ] ; then
